@@ -19,7 +19,7 @@ yarn add common-denonimators
 ## Usage
 
 ```javascript
-const commonDenominators = require('commonDenominators');
+const commonDenominators = require('common-denominators');
 
 commonDenominators(6, 12, 24, 30); // -> [1, 2, 3, 6]
 ```
