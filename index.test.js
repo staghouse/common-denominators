@@ -1,4 +1,4 @@
-import commonDenominators from './index';
+const commonDenominators = require('./index');
 
 describe('common denominators', () => {
     it('should take nothing and return []', () => {

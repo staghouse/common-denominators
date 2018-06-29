@@ -22,20 +22,17 @@ function commonDenominators() {
         }, [])
         .sort((denominator, next) => denominator - next);
 
-    Array.from(new Set(allDenominators)).reduce(
-        (counter, denominator, index, denominators) => {
-            allNumerators.forEach(numerator => {
-                numerator % denominator === 0 ? counter++ : false;
-            });
-            counter === allNumerators.length
-                ? commonDenominators.push(denominator)
-                : null;
-            return (counter = 0);
-        },
-        0
-    );
+    Array.from(new Set(allDenominators)).reduce((counter, denominator) => {
+        allNumerators.forEach(numerator => {
+            numerator % denominator === 0 ? counter++ : false;
+        });
+        counter === allNumerators.length
+            ? commonDenominators.push(denominator)
+            : null;
+        return (counter = 0);
+    }, 0);
 
     return commonDenominators;
 }
 
-export default commonDenominators;
+module.exports = commonDenominators;
