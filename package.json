@@ -1,6 +1,6 @@
 {
     "name": "common-denominators",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "author": "Emett Speer, Eric Lakatos",
     "license": "MIT",
     "description": "A JS function that takes any number of arguments and returns an array of all the common denominators of any numbers supplied",
@@ -8,15 +8,21 @@
         "type": "git",
         "url": "https://github.com/ericlakatos/common-denominators"
     },
-    "main": "index.js",
+    "main": "build/index.js",
     "scripts": {
-        "validate": "jest && npm run benchmark",
-        "benchmark": "node index.benchmark.js",
+        "benchmark-current": "node test/index.current.benchmark.js",
+        "benchmark-stable": "node test/index.stable.benchmark.js",
+        "build-current": "uglifyjs src/index.js -mo src/index.min.js",
+        "build-stable": "uglifyjs src/index.js -mo build/index.min.js && uglifyjs src/index.js -bo build/index.js",
+        "build": "npm run build-current && npm run build-stable",
+        "benchmark": "npm run benchmark-current && npm run benchmark-stable",
+        "validate": "npm run build-current && jest && npm run benchmark",
         "test": "jest"
     },
     "devDependencies": {
         "benchmark": "^2.1.4",
-        "jest": "23.2.0"
+        "jest": "23.2.0",
+        "uglify-es": "^3.3.9"
     },
     "keywords": [
         "common denominators"

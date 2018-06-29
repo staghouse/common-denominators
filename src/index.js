@@ -1,6 +1,5 @@
 function commonDenominators() {
     let commonDenominators = [];
-
     const allNumerators = Array.from(
         new Set(
             Object.values(arguments).filter(
@@ -8,7 +7,6 @@ function commonDenominators() {
             )
         )
     ).sort((denominator, next) => denominator - next);
-
     const allDenominators = allNumerators
         .reduce((denominators, numerator, index, numerators) => {
             let counter = numerators[0];
@@ -21,7 +19,6 @@ function commonDenominators() {
             return denominators;
         }, [])
         .sort((denominator, next) => denominator - next);
-
     Array.from(new Set(allDenominators)).reduce((counter, denominator) => {
         allNumerators.forEach(numerator => {
             numerator % denominator === 0 ? counter++ : false;
@@ -31,7 +28,6 @@ function commonDenominators() {
             : null;
         return (counter = 0);
     }, 0);
-
     return commonDenominators;
 }
 
