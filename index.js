@@ -4,7 +4,7 @@ function commonDenominators() {
     const allNumerators = Array.from(
         new Set(
             Object.values(arguments).filter(
-                numerator => Number.isInteger(numerator) && numerator !== 0
+                numerator => Number.isInteger(numerator) && numerator > 0
             )
         )
     ).sort((denominator, next) => denominator - next);

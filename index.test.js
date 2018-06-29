@@ -1,36 +1,43 @@
 const commonDenominators = require('./index');
 
 describe('common denominators', () => {
-    it('should take nothing and return []', () => {
+    it('should take no arguments and return []', () => {
         let output = commonDenominators();
         let expected = [];
 
         expect(output).toEqual(expected);
     });
 
-    it('should take all invalid arguments and return an array of []', () => {
+    it('should take all invalid arguments and return []', () => {
         let output = commonDenominators('', {}, []);
         let expected = [];
 
         expect(output).toEqual(expected);
     });
 
-    it('should take number 8 and return an array of [1, 2, 4, 8] ', () => {
+    it('should take a single number 8 and return [1, 2, 4, 8] ', () => {
         let output = commonDenominators(8);
         let expected = [1, 2, 4, 8];
 
         expect(output).toEqual(expected);
     });
 
-    it('should take a mixed amount of arguments including 6 and 10 and invalid values and 1, 2, 3, 6', () => {
+    it('should take invalid arguments and 6 and 10 and return [1, 2, 3, 6]', () => {
         let output = commonDenominators(6, 12, '', {}, []);
         let expected = [1, 2, 3, 6];
 
         expect(output).toEqual(expected);
     });
 
-    it('should take unsorted arguments of numbers and still return ordered denominators of 1, 2, 3, 6', () => {
+    it('should take unsorted arguments and return [1, 2, 3, 6]', () => {
         let output = commonDenominators(12, 6, '', {}, []);
+        let expected = [1, 2, 3, 6];
+
+        expect(output).toEqual(expected);
+    });
+
+    it('should take ignore negative numbers', () => {
+        let output = commonDenominators(12, 6, -6);
         let expected = [1, 2, 3, 6];
 
         expect(output).toEqual(expected);

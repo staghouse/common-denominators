@@ -3,16 +3,22 @@
     "version": "1.0.1",
     "author": "Emett Speer, Eric Lakatos",
     "license": "MIT",
-    "description": "A JS function that takes any number of arguments and returns any array of all the common denominators of any numbers supplied",
+    "description": "A JS function that takes any number of arguments and returns an array of all the common denominators of any numbers supplied",
     "repository": {
         "type": "git",
         "url": "https://github.com/ericlakatos/common-denominators"
     },
     "main": "index.js",
     "scripts": {
+        "validate": "jest && npm run benchmark",
+        "benchmark": "node index.benchmark.js",
         "test": "jest"
     },
     "devDependencies": {
+        "benchmark": "^2.1.4",
         "jest": "23.2.0"
-    }
+    },
+    "keywords": [
+        "common denominators"
+    ]
 }

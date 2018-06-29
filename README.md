@@ -23,3 +23,23 @@ const commonDenominators = require('common-denominators');
 
 commonDenominators(6, 12, 24, 30); // -> [1, 2, 3, 6]
 ```
+
+## Development
+
+Run tests (and benchmark on success)
+
+```javascript
+npm run validate
+```
+
+Run tests only
+
+```javascript
+npm run test
+```
+
+Run benchmark only
+
+```javascript
+npm run benchmark
+```
