@@ -1,16 +1,11 @@
 const Benchmark = require('benchmark');
 const suite = new Benchmark.Suite();
 
-const commonDenominators = require('./index');
-
-let testCase = [];
-
-for (let i = 0; i < 10000; i++) {
-    testCase.push(Math.floor(Math.random() * 10000));
-}
+const testCase = require('./cases/arrays');
+const commonDenominators = require('../src/index.min');
 
 suite
-    .add('commonDenominators', function() {
+    .add('Working Release', function() {
         commonDenominators(...testCase);
     })
     .on('cycle', function(event) {

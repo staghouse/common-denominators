@@ -26,20 +26,26 @@ commonDenominators(6, 12, 24, 30); // -> [1, 2, 3, 6]
 
 ## Development
 
-Run tests (and benchmark on success)
+Build/Minify and Test source (and Benchmark on success)
 
-```javascript
+```node
 npm run validate
 ```
 
-Run tests only
+Run all Tests
 
-```javascript
+```node
 npm run test
 ```
 
-Run benchmark only
+Run all Benchmarks
 
-```javascript
+```node
 npm run benchmark
+```
+
+Build/Minify stable (Replace stable with working)
+
+```node
+npm run build
 ```
