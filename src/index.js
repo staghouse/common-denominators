@@ -17,22 +17,20 @@ function commonDenominators() {
         i--;
     }
 
-    if(allNumerators.length < 2 || (starterDenominators.length === 1)) {
+    if(allNumerators.length < 2 || starterDenominators.length === 1) {
         return starterDenominators.reverse();
     }
 
     const allDenominators = allNumerators.slice(1)
         .reduce((denominators, numerator) => {
-            let counter = starterDenominators.length - 1;
-            while (counter > 0) {
+            starterDenominators.map(counter =>
                 numerator % starterDenominators[counter] === 0
                     ? denominators.push(starterDenominators[counter])
-                    : null;
-                counter--;
-            }
+                    : null);
             return denominators;
         }, starterDenominators)
         .sort((denominator, next) => denominator - next);
+
     Array.from(new Set(allDenominators)).reduce((counter, denominator) => {
         allNumerators.forEach(numerator => {
             numerator % denominator === 0 ? counter++ : false;
