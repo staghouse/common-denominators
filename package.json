@@ -15,7 +15,7 @@
         "build-current": "uglifyjs src/index.js -mo src/index.min.js",
         "build-stable": "uglifyjs src/index.js -mo build/index.min.js && uglifyjs src/index.js -bo build/index.js",
         "build": "npm run build-current && npm run build-stable",
-        "benchmark": "npm run benchmark-current && npm run benchmark-stable",
+        "benchmark": "npm run benchmark-stable && npm run benchmark-current",
         "validate": "npm run build-current && jest && npm run benchmark",
         "test": "jest"
     },
