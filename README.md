@@ -2,6 +2,10 @@
 
 A JS function that takes any number of arguments and returns an array of all the common denominators of any numbers supplied
 
+## The Challenge
+
+Write your own `commonDenominators` function inside of `src/index.js`. Run the `validate` command to test and benchmark your code against the stable. If all tests pass and the benchmark improves over the stable then PR!
+
 ## Install
 
 with NPM
@@ -26,25 +30,25 @@ commonDenominators(6, 12, 24, 30); // -> [1, 2, 3, 6]
 
 ## Development
 
-Build/Minify and Test source (and Benchmark on success)
+Minify, test and benchmark (if tests pass) stable and working
 
 ```node
 npm run validate
 ```
 
-Run all Tests
+Run all tests
 
 ```node
 npm run test
 ```
 
-Run all Benchmarks
+Run all benchmarks
 
 ```node
 npm run benchmark
 ```
 
-Build/Minify stable (Replace stable with working)
+Build stable function
 
 ```node
 npm run build
