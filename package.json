@@ -10,13 +10,11 @@
     },
     "main": "build/index.js",
     "scripts": {
-        "benchmark-current": "node test/index.current.benchmark.js",
-        "benchmark-stable": "node test/index.stable.benchmark.js",
-        "build-current": "uglifyjs src/index.js -mo src/index.min.js",
+        "build-working": "uglifyjs src/index.js -mo src/index.min.js",
         "build-stable": "uglifyjs src/index.js -mo build/index.min.js && uglifyjs src/index.js -bo build/index.js",
-        "build": "npm run build-current && npm run build-stable",
-        "benchmark": "npm run benchmark-stable && npm run benchmark-current",
-        "validate": "npm run build-current && jest && npm run benchmark",
+        "build": "npm run build-working && npm run build-stable",
+        "benchmark": "node test/benchmark.js",
+        "validate": "npm run build-working && jest && npm run benchmark",
         "test": "jest"
     },
     "devDependencies": {
