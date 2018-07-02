@@ -15,7 +15,7 @@
         "build": "npm run build-working && npm run build-stable",
         "benchmark": "node test/benchmark.js",
         "validate": "npm run build-working && jest && npm run benchmark",
-        "test": "jest"
+        "test": "npm run build-working && jest"
     },
     "devDependencies": {
         "benchmark": "^2.1.4",
