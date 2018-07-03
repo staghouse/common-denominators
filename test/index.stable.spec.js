@@ -22,7 +22,7 @@ describe('common denominators WIP', () => {
         expect(output).toEqual(expected);
     });
 
-    it('should take invalid arguments and 6 and 10 and return [1, 2, 3, 6]', () => {
+    it('should take invalid arguments and 6 and 12 and return [1, 2, 3, 6]', () => {
         let output = commonDenominators(6, 12, '', {}, []);
         let expected = [1, 2, 3, 6];
 
@@ -36,7 +36,7 @@ describe('common denominators WIP', () => {
         expect(output).toEqual(expected);
     });
 
-    it('should take ignore negative numbers', () => {
+    it('should ignore negative numbers', () => {
         let output = commonDenominators(12, 6, -6);
         let expected = [1, 2, 3, 6];
 
