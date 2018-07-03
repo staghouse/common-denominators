@@ -39,9 +39,6 @@ suite
         ops += Math.floor(event.target.hz);
         cycles++;
 
-        process.stdout.clearLine();
-        process.stdout.cursorTo(0);
-
         console.log(
             '\033[2m',
             String(event.target),
