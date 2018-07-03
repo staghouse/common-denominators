@@ -1,13 +1,12 @@
-function commonDenominators() {
-    let commonDenominators = [];
+const commonDenominators = (...args) => {
     const allNumerators = Array.from(
         new Set(
-            Object.values(arguments).filter(
+            args.filter(
                 numerator => Number.isInteger(numerator) && numerator > 0
             )
         )
     ).sort((denominator, next) => denominator - next);
-    const allDenominators = allNumerators
+    return allNumerators
         .reduce((denominators, numerator, index, numerators) => {
             let counter = numerators[0];
             while (counter > 0) {
@@ -18,17 +17,13 @@ function commonDenominators() {
             }
             return denominators;
         }, [])
-        .sort((denominator, next) => denominator - next);
-    Array.from(new Set(allDenominators)).reduce((counter, denominator) => {
-        allNumerators.forEach(numerator => {
-            numerator % denominator === 0 ? counter++ : false;
+        .sort((denominator, next) => denominator - next)
+        .filter((denominator, index, denominators) => {
+            return (
+                denominators[index] ===
+                denominators[index + (allNumerators.length - 1)]
+            );
         });
-        counter === allNumerators.length
-            ? commonDenominators.push(denominator)
-            : null;
-        return (counter = 0);
-    }, 0);
-    return commonDenominators;
-}
+};
 
 module.exports = commonDenominators;
