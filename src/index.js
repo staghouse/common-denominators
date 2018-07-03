@@ -6,6 +6,7 @@ const commonDenominators = (...args) => {
             )
         )
     ).sort((denominator, next) => denominator - next);
+    const numeratorsLength = (allNumerators.length - 1);
     return allNumerators
         .reduce((denominators, numerator, index, numerators) => {
             let counter = numerators[0];
@@ -21,7 +22,7 @@ const commonDenominators = (...args) => {
         .filter((denominator, index, denominators) => {
             return (
                 denominators[index] ===
-                denominators[index + (allNumerators.length - 1)]
+                denominators[index + numeratorsLength]
             );
         });
 };
