@@ -120,6 +120,6 @@ suite
             return counter;
         }, 0);
 
-        console.log('\033[2m', `Finished all benchmark tests.\n`, '\033[0m');
+        console.log('\033[2m', `Finished all benchmark tests.`, '\033[0m');
     })
     .run({ async: true });
