@@ -19,6 +19,7 @@
     },
     "devDependencies": {
         "benchmark": "^2.1.4",
+        "chalk": "^2.4.1",
         "jest": "23.2.0",
         "uglify-es": "^3.3.9"
     },
