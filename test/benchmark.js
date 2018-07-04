@@ -1,3 +1,5 @@
+const chalk = require('chalk');
+const log = console.log;
 const Benchmark = require('benchmark');
 const suite = new Benchmark.Suite();
 
@@ -39,28 +41,24 @@ suite
         ops += Math.floor(event.target.hz);
         cycles++;
 
-        console.log(
-            '\033[2m',
-            String(event.target),
-            `[${cycles} of ${average}]`,
-            '\033[0m'
-        );
+        log(chalk.gray(String(event.target), `[${cycles} of ${average}]`));
 
         if (cycles === average) {
             results.push(Math.floor(ops / average));
 
-            console.log(
-                '\033[1m\x1b[33m%s\x1b[0m\033[0m',
-                `${event.target.name} x ${Math.floor(
-                    ops / average
-                ).toLocaleString()} ops/sec (average)`
+            log(
+                chalk.bold.yellow(
+                    `${event.target.name} x ${Math.floor(
+                        ops / average
+                    ).toLocaleString()} ops/sec (average)`
+                )
             );
 
             if (suites <= fns.length) {
                 suites++;
-                console.log('Continuing...\n');
+                log('Continuing...\n');
             } else {
-                console.log('');
+                log('');
             }
 
             cycles = 0;
@@ -68,11 +66,7 @@ suite
         }
     })
     .on('start', () => {
-        console.log(
-            '\033[1m\x1b[37m\x1b[44m%s\x1b[0m\033[0m',
-            ' Starting benchmark tests... ',
-            '\n'
-        );
+        log(chalk.bold.bgBlue.white(' Starting benchmark tests... \n'));
     })
     .on('complete', () => {
         const total = Object.keys(tests).length;
@@ -82,41 +76,28 @@ suite
             const stable = parseInt(results[counter + total]);
             const diff = parseInt(work - stable);
             const min = parseInt(stable * benchmark);
-            const better = diff >= min;
-            const worse = diff <= 0 - min;
+            const better = diff > min;
+            const worse = diff < 0 - min;
             const comparable = !better && !worse;
+            const msg = ` ${parseInt(
+                (diff / stable) * 100
+            )}% ${fns[0].name.toUpperCase()} DELTA: ${
+                Object.keys(tests)[counter]
+            } `;
 
-            better === true
-                ? console.log(
-                      '\033[1m\x1b[37m\x1b[42m%s\x1b[0m\033[0m',
-                      ` INCREASE of ${benchmark * 100}%+: ${
-                          Object.keys(tests)[counter]
-                      } `
-                  )
-                : worse == true
-                    ? console.log(
-                          '\033[1m\x1b[37m\x1b[41m%s\x1b[0m\033[0m',
-                          ` WORSE by ${benchmark * 100}%+: ${
-                              Object.keys(tests)[counter]
-                          } `
-                      )
-                    : comparable === true
-                        ? console.log(
-                              '\033[1m\x1b[30m\x1b[43m%s\x1b[0m\033[0m',
-                              ` COMPARABLE within ${benchmark * 100}%: ${
-                                  Object.keys(tests)[counter]
-                              } `
-                          )
-                        : console.log(
-                              '\033[1m\x1b[37m\x1b[41m%s\x1b[0m\033[0m',
-                              ` PROBLEM: ${Object.keys(tests)[counter]} `
-                          );
+            log(
+                better
+                    ? chalk.bold.bgGreen.white(msg)
+                    : worse
+                        ? chalk.bold.bgRed.white(msg)
+                        : comparable
+                            ? chalk.bold.bgWhite.black(msg)
+                            : chalk.bold.bgYellow.black('UNKNOWN RESULT')
+            );
 
-            counter++;
-
-            return counter;
+            return counter + 1;
         }, 0);
 
-        console.log('\033[2m', `Finished all benchmark tests.`, '\033[0m');
+        log(chalk.gray(`\nRan all benchmark tests.`));
     })
     .run({ async: true });
