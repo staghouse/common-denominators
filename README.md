@@ -48,8 +48,8 @@ Run all benchmarks
 npm run benchmark
 ```
 
-Build stable function
+Build production
 
 ```node
-npm run build
+npm run build-prod
 ```

@@ -60,4 +60,9 @@ typings/
 # next.js build output
 .next
 .idea
+
+# lock files
 package-lock.json
+
+# osx
+.DS_Store

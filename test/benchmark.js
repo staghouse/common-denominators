@@ -1,3 +1,4 @@
+const readline = require('readline');
 const chalk = require('chalk');
 const log = console.log;
 const Benchmark = require('benchmark');
@@ -14,23 +15,28 @@ const fns = [
     },
 ];
 
-const tests = {
-    'Few Numbers': require('./cases/few'),
-    'Many Numbers': require('./cases/many'),
-};
+const cases = [
+    {
+        name: 'Few Numbers',
+        data: require('./cases/few'),
+    },
+    {
+        name: 'Many Numbers',
+        data: require('./cases/many'),
+    },
+];
 
 const average = 3; // Amount to run each test
 const benchmark = 0.1; // Percent to compare against
 let results = [];
-let suites = 0;
 let cycles = 0;
 let ops = 0;
 
-for (let fn of fns) {
-    for (let test in tests) {
+for (let test of cases) {
+    for (let fn of fns) {
         for (let i = 1; i <= average; i++) {
-            suite.add(`${fn.name}: ${test}`, () => {
-                fn.fn(...tests[test]);
+            suite.add(`${fn.name}: ${test.name}`, () => {
+                fn.fn(...test.data);
             });
         }
     }
@@ -41,39 +47,46 @@ suite
         ops += Math.floor(event.target.hz);
         cycles++;
 
-        log(chalk.gray(String(event.target), `[${cycles} of ${average}]`));
+        if (cycles > 0) {
+            readline.clearLine(process.stdout, 0);
+            readline.cursorTo(process.stdout, 0);
+        }
 
-        if (cycles === average) {
+        if (cycles < average) {
+            process.stdout.write(
+                chalk.bold.gray(
+                    String(event.target),
+                    `[${cycles} of ${average}]`
+                )
+            );
+        } else {
             results.push(Math.floor(ops / average));
 
-            log(
+            process.stdout.write(
                 chalk.bold.yellow(
                     `${event.target.name} x ${Math.floor(
                         ops / average
-                    ).toLocaleString()} ops/sec (average)`
+                    ).toLocaleString()} ops/sec average (${average} Tests)\n`
                 )
             );
-
-            if (suites <= fns.length) {
-                suites++;
-                log('Continuing...\n');
-            } else {
-                log('');
-            }
 
             cycles = 0;
             ops = 0;
         }
+
+        if (cycles === 0) process.stdout.write(chalk.gray('Continuing...'));
     })
     .on('start', () => {
-        log(chalk.bold.bgBlue.white(' Starting benchmark tests... \n'));
+        log(chalk.bold.bgBlue.white(' Starting benchmarks... \n'));
     })
     .on('complete', () => {
-        const total = Object.keys(tests).length;
+        readline.clearLine(process.stdout, 0);
+        readline.cursorTo(process.stdout, 0);
+        log();
 
-        fns.reduce((counter, fn) => {
-            const work = parseInt(results[counter]);
-            const stable = parseInt(results[counter + total]);
+        cases.reduce((counter, cs) => {
+            const work = parseInt(results[counter * cases.length]);
+            const stable = parseInt(results[counter * cases.length + 1]);
             const diff = parseInt(work - stable);
             const min = parseInt(stable * benchmark);
             const better = diff > min;
@@ -81,9 +94,7 @@ suite
             const comparable = !better && !worse;
             const msg = ` ${parseInt(
                 (diff / stable) * 100
-            )}% ${fns[0].name.toUpperCase()} DELTA: ${
-                Object.keys(tests)[counter]
-            } `;
+            )}% ${fns[0].name.toUpperCase()} DELTA: ${cases[counter].name} `;
 
             log(
                 better
@@ -98,6 +109,6 @@ suite
             return counter + 1;
         }, 0);
 
-        log(chalk.gray(`\nRan all benchmark tests.`));
+        log(chalk.gray(`\nRan all benchmarks.`));
     })
     .run({ async: true });
