@@ -1,9 +1,9 @@
 {
     "name": "common-denominators",
-    "version": "1.0.0",
+    "version": "1.0.2",
     "author": "Emett Speer, Eric Lakatos",
     "license": "MIT",
-    "description": "A suite of JS functions to find prime numbers",
+    "description": "A JS function that takes any number of arguments and returns an array of all the common denominators of any numbers supplied.",
     "repository": {
         "type": "git",
         "url": "https://github.com/ericlakatos/common-denominators"
