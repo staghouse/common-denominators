@@ -1,17 +1,18 @@
 {
-    "name": "common-denominators",
-    "version": "1.0.2",
+    "name": "fast-primes",
+    "version": "1.0.0",
     "author": "Emett Speer, Eric Lakatos",
     "license": "MIT",
-    "description": "A JS function that takes any number of arguments and returns an array of all the common denominators of any numbers supplied",
+    "description": "A suite of JS functions to find prime numbers",
     "repository": {
         "type": "git",
-        "url": "https://github.com/ericlakatos/common-denominators"
+        "url": "https://github.com/ericlakatos/fast-primes"
     },
     "main": "build/index.js",
     "scripts": {
         "build-working": "uglifyjs src/index.js -mo src/index.min.js",
-        "build-stable": "uglifyjs src/index.js -mo build/index.min.js && uglifyjs src/index.js -bo build/index.js",
+        "build-stable": "uglifyjs build/index.js -mo build/index.min.js && uglifyjs build/index.js -bo build/index.js",
+        "build-prod": "uglifyjs src/index.js -mo build/index.min.js && uglifyjs src/index.js -bo build/index.js",
         "build": "npm run build-working && npm run build-stable",
         "benchmark": "node test/benchmark.js",
         "validate": "npm run build-working && jest && npm run benchmark",
@@ -24,6 +25,6 @@
         "uglify-es": "^3.3.9"
     },
     "keywords": [
-        "common denominators"
+        "prime numbers"
     ]
 }
