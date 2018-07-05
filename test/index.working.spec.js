@@ -1,6 +1,6 @@
 const commonDenominators = require('../src/index.min');
 
-describe('common denominators', () => {
+describe('Common Denominators: Working', () => {
     it('should take no arguments and return []', () => {
         let output = commonDenominators();
         let expected = [];
