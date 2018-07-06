@@ -51,5 +51,5 @@ npm run benchmark
 Build production
 
 ```node
-npm run build-prod
+npm run build:prod
 ```
