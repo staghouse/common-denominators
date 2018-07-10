@@ -1,19 +1,14 @@
-function denoms(num) {
-    let denoms = [ num ];
-    let counter = Math.ceil(num / 2);
-    while (counter > 0) {
-        if (num % counter === 0) denoms.push(counter);
-        counter--;
-    }
-    return denoms;
-}
-
 const commonDenominators = (...args) => {
     const numerators = args.filter(numerator => Number.isInteger(numerator) && numerator > 0);
-    const min = Math.min(...numerators);
-    if (min < 2) return [ 1 ];
-    if (!numerators.length) return numerators;
-    const denominators = denoms(min).sort((denominator, next) => denominator - next);
+    const denominators = [ Math.min(...numerators) ];
+    let minimum = Math.ceil(denominators[0] / 2);
+    if (!numerators.length) return [];
+    if (minimum < 2) return [ 1 ];
+    while (minimum > 0) {
+        if (denominators[0] % minimum === 0) denominators.push(minimum);
+        minimum--;
+    }
+    denominators.reverse();
     if (numerators.length === 1) return [ ...denominators ];
     numerators.splice(1, numerators.length - 1).map(numerator => {
         let denominator = denominators.length - 1;

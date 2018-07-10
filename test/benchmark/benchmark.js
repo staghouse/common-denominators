@@ -56,7 +56,9 @@ suite
                 chalk.bold.yellow(
                     `${event.target.name} x ${Math.floor(
                         ops / average
-                    ).toLocaleString()} ops/sec average (${average} Pass)\n`
+                    ).toLocaleString()} ops/sec average (${average} Pass${
+                        average > 1 ? 'es' : ''
+                    })\n`
                 )
             );
 
@@ -77,10 +79,11 @@ suite
         readline.cursorTo(process.stdout, 0);
         log();
 
-        data.forEach((d, index) => {
-            const work = parseInt(results[index * tests.length]);
+        for (let i = 1; i < tests.length; i++) {
+            log(chalk.bold(`${tests[i].name} benchmarks:`));
 
-            for (let i = 1; i < tests.length; i++) {
+            data.map((d, index) => {
+                const work = parseInt(results[index * tests.length]);
                 const current = parseInt(results[index * tests.length + i]);
                 const currentDiff = parseInt(work - current);
                 const currentMin = parseInt(current * benchmark);
@@ -90,22 +93,23 @@ suite
                     !currentDiffBetter && !currentDiffWorse;
                 const currentDiffMsg = `${parseInt(
                     (currentDiff / current) * 100
-                )}% Delta, `;
+                )}%`;
 
                 process.stdout.write(
                     currentDiffBetter
-                        ? chalk.bold.green(currentDiffMsg)
+                        ? chalk.bold.bgGreen.white(' PASS ')
                         : currentDiffWorse
-                            ? chalk.bold.red(currentDiffMsg)
+                            ? chalk.bold.bgRed.white(' FAIL ')
                             : currentDiffComparable
-                                ? chalk.bold.white(currentDiffMsg)
-                                : chalk.bold.bgRed.white('UNKNOWN RESULT')
+                                ? chalk.bold.bgWhite.black(' COMP ')
+                                : chalk.bold.bgYellow.white(' WARN ')
                 );
-                process.stdout.write(`${tests[i].name} (${d.name}) \n`);
-            }
+                process.stdout.write(` ${currentDiffMsg} delta `);
+                process.stdout.write(chalk.dim(`(${d.name}) \n`));
+            });
 
             log();
-        });
+        }
 
         log(chalk.gray(`Ran all benchmarks.`));
     })
