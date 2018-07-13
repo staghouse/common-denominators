@@ -1,16 +1,25 @@
 const commonDenominators = (...args) => {
-    const allNumerators = Array.from(new Set(args.filter(numerator => Number.isInteger(numerator) && numerator > 0))).sort((denominator, next) => denominator - next);
-    const numeratorsLength = allNumerators.length - 1;
-    return allNumerators.reduce((denominators, numerator, index, numerators) => {
-        let counter = numerators[0];
-        while (counter > 0) {
-            numerator % counter === 0 && numerators[0] % counter === 0 ? denominators.push(counter) : null;
-            counter--;
+    const numerators = args.filter(numerator => Number.isInteger(numerator) && numerator > 0);
+    const denominators = [ Math.min(...numerators) ];
+    let minimum = Math.ceil(denominators[0] / 2);
+    if (!numerators.length) return [];
+    if (minimum < 2) return [ 1 ];
+    while (minimum > 0) {
+        if (denominators[0] % minimum === 0) denominators.push(minimum);
+        minimum--;
+    }
+    denominators.reverse();
+    if (numerators.length === 1) return [ ...denominators ];
+    numerators.splice(1, numerators.length - 1).map(numerator => {
+        let denominator = denominators.length - 1;
+        while (denominator >= 0) {
+            if (numerator % denominators[denominator] !== 0) {
+                denominators.splice(denominator, 1);
+            }
+            denominator--;
         }
-        return denominators;
-    }, []).sort((denominator, next) => denominator - next).filter((denominator, index, denominators) => {
-        return denominators[index] === denominators[index + numeratorsLength];
     });
+    return denominators;
 };
 
 module.exports = commonDenominators;

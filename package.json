@@ -8,7 +8,7 @@
         "type": "git",
         "url": "https://github.com/ericlakatos/common-denominators"
     },
-    "main": "build/index.js",
+    "main": "build/index.min.js",
     "scripts": {
         "build:working": "uglifyjs src/index.js -mo src/index.min.js",
         "build:control": "uglifyjs test/benchmark/control/index.js -mo test/benchmark/control/index.min.js",
