@@ -1,6 +1,6 @@
 {
     "name": "common-denominators",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "author": "Emett Speer, Eric Lakatos, twitch.tv/codephobia",
     "license": "MIT",
     "description": "A JS function that takes any number of arguments and returns an array of all the common denominators of any numbers supplied.",
