@@ -9,7 +9,7 @@ Write your own `commonDenominators` function inside of `src/index.js`. Run the `
 ## Install local dev dependencies
 
 ```
-npm run install
+npm install
 ```
 
 ## Usage
