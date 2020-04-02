@@ -9,7 +9,7 @@ module.exports = {
       fns: [require("../../build/index.min")]
     },
     {
-      name: "Control (Outdated)",
+      name: "Control (v1)",
       fns: [require("./control/index.min")]
     }
   ],

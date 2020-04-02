@@ -28,13 +28,13 @@ Minify, test and benchmark (if tests pass) stable and working
 npm run validate
 ```
 
-Run all tests
+Run just units tests
 
 ```node
 npm run test
 ```
 
-Run all benchmarks
+Run just benchmarks
 
 ```node
 npm run benchmark

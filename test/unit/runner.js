@@ -7,7 +7,7 @@ module.exports = (name, fn) => {
       expect(output).toEqual(expected);
     });
 
-    it("should take all invalid arguments and return []", () => {
+    it("should take all invalid arguments and throw a SyntaxError", () => {
       let output = fn("", {}, []);
       let expected = [];
 
@@ -28,7 +28,7 @@ module.exports = (name, fn) => {
       expect(output).toEqual(expected);
     });
 
-    it("should take a repeat numbers 8 and return [1, 2, 4, 8] ", () => {
+    it("should take repeat numbers 8 and return [1, 2, 4, 8] ", () => {
       let output = fn(8, 8);
       let expected = [1, 2, 4, 8];
 
@@ -45,6 +45,27 @@ module.exports = (name, fn) => {
     it("should take invalid arguments and 7 and 12 and return [1]", () => {
       let output = fn(7, 12, "", {}, []);
       let expected = [1];
+
+      expect(output).toEqual(expected);
+    });
+
+    it("should take a series of small valid arguments and return [1, 2]", () => {
+      let output = fn(2, 6, 12, 24, 30);
+      let expected = [1, 2];
+
+      expect(output).toEqual(expected);
+    });
+
+    it("should take a series of large valid arguments and return [1]", () => {
+      let output = fn(845, 3532, 389, 7000, 10964);
+      let expected = [1];
+
+      expect(output).toEqual(expected);
+    });
+
+    it("should take a series of large valid arguments and return [1, 2, 5, 10]", () => {
+      let output = fn(10, 50, 1000, 10960);
+      let expected = [1, 2, 5, 10];
 
       expect(output).toEqual(expected);
     });

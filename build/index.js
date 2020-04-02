@@ -1,15 +1,26 @@
 const commonDenominators = (...args) => {
-    const numerators = args.filter(numerator => Number.isInteger(numerator) && numerator > 0);
+    const numerators = args.filter(numerator => {
+        return Number.isInteger(numerator) && numerator > 0;
+    });
+    if (numerators.length === 0) {
+        return [];
+    }
     const denominators = [ Math.min(...numerators) ];
-    let minimum = Math.ceil(denominators[0] / 2);
-    if (!numerators.length) return [];
-    if (minimum < 2) return [ 1 ];
-    while (minimum > 0) {
-        if (denominators[0] % minimum === 0) denominators.push(minimum);
-        minimum--;
+    const median = denominators[0] / 2;
+    if (median < 1) {
+        return [ 1 ];
+    }
+    let commonNumber = Math.ceil(median);
+    while (commonNumber > 0) {
+        if (denominators[0] % commonNumber === 0) {
+            denominators.push(commonNumber);
+        }
+        commonNumber--;
     }
     denominators.reverse();
-    if (numerators.length === 1) return [ ...denominators ];
+    if (numerators.length === 1) {
+        return [ ...denominators ];
+    }
     numerators.splice(1, numerators.length - 1).map(numerator => {
         let denominator = denominators.length - 1;
         while (denominator >= 0) {

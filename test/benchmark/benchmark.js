@@ -3,10 +3,9 @@ const Benchmark = require("benchmark");
 const readline = require("readline");
 const chalk = require("chalk");
 const suite = new Benchmark.Suite();
-const env = require("dotenv");
 const log = console.log;
 
-const average = process.env.AVERAGE || 3; // Amount to run each test
+const average = 3;
 const benchmark = 0.1; // Percent to compare against
 let results = [];
 let cycles = 0;
@@ -91,7 +90,7 @@ suite
 
         process.stdout.write(
           currentDiffBetter
-            ? chalk.bold.bgGreen.white(" PASS ")
+            ? chalk.bold.bgGreen.black(" PASS ")
             : currentDiffWorse
             ? chalk.bold.bgRed.white(" FAIL ")
             : currentDiffComparable

@@ -1,6 +1,6 @@
 {
   "name": "common-denominators",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "author": "Emett Speer, Eric Lakatos, twitch.tv/codephobia",
   "license": "MIT",
   "description": "A JS function that takes any number of arguments and returns an array of all the common denominators of any numbers supplied.",
@@ -22,14 +22,19 @@
     "benchmark:quick": "AVERAGE=1 node test/benchmark/benchmark.js",
     "validate": "npm run build:working && jest && npm run benchmark",
     "validate:quick": "npm run build:working && jest && AVERAGE=1 npm run benchmark",
-    "test": "npm run build:working && jest",
-    "test:watch": "npm run build:working && jest --watch"
+    "test": "jest",
+    "test:watch": "jest --watch"
   },
   "devDependencies": {
     "benchmark": "^2.1.4",
     "chalk": "^4.0.0",
-    "dotenv": "^8.2.0",
+    "husky": "^4.2.3",
     "jest": "^25.2.6",
     "uglify-es": "^3.3.9"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run test"
+    }
   }
 }
