@@ -9,7 +9,7 @@ Write your own `commonDenominators` function inside of `src/index.js`. Run the `
 ## Install local dev dependencies
 
 ```
-npm run boostrap
+npm run install
 ```
 
 ## Usage
