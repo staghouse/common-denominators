@@ -36,5 +36,8 @@
     "hooks": {
       "pre-commit": "npm run test"
     }
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
   }
 }
