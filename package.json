@@ -1,35 +1,35 @@
 {
-    "name": "common-denominators",
-    "version": "1.0.4",
-    "author": "Emett Speer, Eric Lakatos, twitch.tv/codephobia",
-    "license": "MIT",
-    "description": "A JS function that takes any number of arguments and returns an array of all the common denominators of any numbers supplied.",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/ericlakatos/common-denominators"
-    },
-    "main": "build/index.min.js",
-    "scripts": {
-        "build:working": "uglifyjs src/index.js -mo src/index.min.js",
-        "build:control": "uglifyjs test/benchmark/control/index.js -mo test/benchmark/control/index.min.js",
-        "build:stable": "uglifyjs build/index.js -mo build/index.min.js && uglifyjs build/index.js -bo build/index.js",
-        "build:prod": "uglifyjs src/index.js -mo build/index.min.js && uglifyjs src/index.js -bo build/index.js",
-        "build": "npm run build:working && npm run build:control && npm run build:stable",
-        "benchmark": "node test/benchmark/benchmark.js",
-        "benchmark:quick": "AVERAGE=1 node test/benchmark/benchmark.js",
-        "validate": "npm run build:working && jest && npm run benchmark",
-        "validate:quick": "npm run build:working && jest && AVERAGE=1 npm run benchmark",
-        "test": "npm run build:working && jest",
-        "test:watch": "npm run build:working && jest --watch"
-    },
-    "devDependencies": {
-        "benchmark": "^2.1.4",
-        "chalk": "^2.4.1",
-        "dotenv": "^6.0.0",
-        "jest": "23.2.0",
-        "uglify-es": "^3.3.9"
-    },
-    "keywords": [
-        "common denominators"
-    ]
+  "name": "common-denominators",
+  "version": "1.0.4",
+  "author": "Emett Speer, Eric Lakatos, twitch.tv/codephobia",
+  "license": "MIT",
+  "description": "A JS function that takes any number of arguments and returns an array of all the common denominators of any numbers supplied.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ericlakatos/common-denominators"
+  },
+  "keywords": [
+    "common denominators"
+  ],
+  "main": "build/index.min.js",
+  "scripts": {
+    "build:working": "uglifyjs src/index.js -cmo src/index.min.js",
+    "build:control": "uglifyjs test/benchmark/control/index.js -cmo test/benchmark/control/index.min.js",
+    "build:stable": "uglifyjs build/index.js -cmo build/index.min.js && uglifyjs build/index.js -bo build/index.js",
+    "build:prod": "uglifyjs src/index.js -cmo build/index.min.js && uglifyjs src/index.js -bo build/index.js",
+    "build": "npm run build:working && npm run build:control && npm run build:stable",
+    "benchmark": "node test/benchmark/benchmark.js",
+    "benchmark:quick": "AVERAGE=1 node test/benchmark/benchmark.js",
+    "validate": "npm run build:working && jest && npm run benchmark",
+    "validate:quick": "npm run build:working && jest && AVERAGE=1 npm run benchmark",
+    "test": "npm run build:working && jest",
+    "test:watch": "npm run build:working && jest --watch"
+  },
+  "devDependencies": {
+    "benchmark": "^2.1.4",
+    "chalk": "^4.0.0",
+    "dotenv": "^8.2.0",
+    "jest": "^25.2.6",
+    "uglify-es": "^3.3.9"
+  }
 }

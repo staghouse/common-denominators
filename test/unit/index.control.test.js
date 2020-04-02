@@ -1,4 +1,4 @@
 const runner = require('./runner');
-const fn = require('../../test/benchmark/control/index.min');
+const fn = require('../benchmark/control/index.min');
 
 runner('Common Denominators: Control', fn);
