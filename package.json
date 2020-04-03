@@ -1,6 +1,6 @@
 {
   "name": "common-denominators",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "author": "Emett Speer, Eric Lakatos, twitch.tv/codephobia",
   "license": "MIT",
   "description": "A JS function that takes any number of arguments and returns an array of all the common denominators of any numbers supplied.",
@@ -11,13 +11,11 @@
   "keywords": [
     "common denominators"
   ],
-  "main": "build/index.min.js",
+  "main": "dist/index.min.js",
   "scripts": {
     "build:working": "uglifyjs src/index.js -cmo src/index.min.js",
     "build:control": "uglifyjs test/benchmark/control/index.js -cmo test/benchmark/control/index.min.js",
-    "build:stable": "uglifyjs build/index.js -cmo build/index.min.js && uglifyjs build/index.js -bo build/index.js",
-    "build:prod": "uglifyjs src/index.js -cmo build/index.min.js && uglifyjs src/index.js -bo build/index.js",
-    "build": "npm run build:working && npm run build:control && npm run build:stable",
+    "dist": "uglifyjs src/index.js -b indent_level=2 -o dist/index.js && uglifyjs src/index.js -cmo dist/index.min.js",
     "benchmark": "node test/benchmark/benchmark.js",
     "benchmark:quick": "AVERAGE=1 node test/benchmark/benchmark.js",
     "validate": "npm run build:working && jest && npm run benchmark",

@@ -18,7 +18,7 @@ npm install
 
 ## Usage
 
-```javascript
+```js
 const commonDenominators = require('common-denominators');
 
 commonDenominators(6, 12, 24, 30); // -> [1, 2, 3, 6]
@@ -26,26 +26,27 @@ commonDenominators(6, 12, 24, 30); // -> [1, 2, 3, 6]
 
 ## Development
 
-Minify, test and benchmark (if tests pass) stable and working
+Minify, test and benchmark
 
-```node
+```
 npm run validate
 ```
 
-Run just units tests
+Run only unit tests
 
-```node
-npm run test
+```js
+npm run test // test all files once
+npm run test:watch // watch and test on source
 ```
 
-Run just benchmarks
+Run only benchmarks
 
 ```node
 npm run benchmark
 ```
 
-Build production
+Build distribution package. Overwrites the current package export. *(This should be the fastest passing version)*
 
 ```node
-npm run build:prod
+npm run dist
 ```

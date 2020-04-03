@@ -1,17 +1,19 @@
 module.exports = {
+  // Comment out tests as needed
   tests: [
+    // Make sure the source is always the first case
     {
       name: "Source (Working)",
       fns: [require("../../src/index.min")]
     },
     {
-      name: "Build (Stable)",
-      fns: [require("../../build/index.min")]
+      name: "Dist (Stable)",
+      fns: [require("../../dist/index.min")]
     },
-    {
-      name: "Control (v1)",
-      fns: [require("./control/index.min")]
-    }
+    // {
+    //   name: "Control (v1)",
+    //   fns: [require("./control/index.min")]
+    // }
   ],
   data: [
     {

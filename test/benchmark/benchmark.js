@@ -29,7 +29,7 @@ for (let test of data) {
 
 suite
   .on("start", () => {
-    log(chalk.bold.blue(" Starting benchmarks... \n"));
+    log(chalk.bold.blue(" Running benchmark testing... \n"));
   })
   .on("cycle", event => {
     ops += Math.floor(event.target.hz);
@@ -76,7 +76,7 @@ suite
     log();
 
     for (let i = 1; i < tests.length; i++) {
-      log(chalk.bold(`${tests[i].name} benchmarks:`));
+      log(chalk.bold(`${tests[0].name} against ${tests[i].name}:`));
 
       data.map((d, index) => {
         const work = parseInt(results[index * tests.length]);
