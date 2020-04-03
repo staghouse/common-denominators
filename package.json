@@ -22,8 +22,8 @@
     "benchmark:quick": "AVERAGE=1 node test/benchmark/benchmark.js",
     "validate": "npm run build:working && jest && npm run benchmark",
     "validate:quick": "npm run build:working && jest && AVERAGE=1 npm run benchmark",
-    "test": "jest",
-    "test:watch": "jest --watch"
+    "test": "jest --coverage --coverageDirectory='__coverage__'",
+    "test:watch": "jest --coverage --coverageDirectory='__coverage__' --watch"
   },
   "devDependencies": {
     "benchmark": "^2.1.4",

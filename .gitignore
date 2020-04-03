@@ -61,8 +61,8 @@ typings/
 .next
 .idea
 
-# lock files
-package-lock.json
-
 # osx
 .DS_Store
+
+# coverage files
+__coverage__/
