@@ -2,6 +2,7 @@
 
 ![Node CI](https://github.com/staghouse/common-denominators/workflows/Node%20CI/badge.svg)
 ![codecov](https://codecov.io/gh/staghouse/common-denominators/branch/master/graph/badge.svg)
+![npm version](https://img.shields.io/npm/v/common-denominators)
 
 A JS function that takes any number of arguments and returns an array of all the common denominators of any numbers supplied
 
