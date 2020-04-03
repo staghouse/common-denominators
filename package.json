@@ -6,7 +6,7 @@
   "description": "A JS function that takes any number of arguments and returns an array of all the common denominators of any numbers supplied.",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ericlakatos/common-denominators"
+    "url": "https://github.com/staghouse/common-denominators"
   },
   "keywords": [
     "common denominators"
