@@ -20,7 +20,7 @@ jobs:
     - name: Install local dependencies
       run: |
         npm install
-    - name: Test and build project
+    - name: Test project
       run: |
         npm test
       env:
