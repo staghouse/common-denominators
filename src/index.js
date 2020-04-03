@@ -1,9 +1,10 @@
 /**
+ * @param {...any} args Only valid Int types will pass through the function completely
  *
- * @param {...any} args Only valid Int types will pass through the function wholly.
- *
- * @note Try to write code as readable as possible, the build tools will optimize accordingly.
- * @note `filter` is interestingly faster than a `for` loop when working with large data sets
+ * @note Try to write code as readable as possible, the build tools will optimize accordingly
+ * @note `sort` is much slower than `reverse` when working with small dats sets
+ *       whie providing little to no gain for larger data sets
+ * @note `filter` is faster than a `for` loop when working with large data sets
  *       while providing little gain for smaller data sets.
  * @note Remember to account for small and large numbers and data sets. Validate often.
  * @note The goal here is to write friendly code, pass tests and make a holistically faster function.
@@ -14,75 +15,63 @@
  */
 
 const commonDenominators = (...args) => {
-  // Create a storage for our numerators where we filter over possible numerators
-  // from the arguments passed in to the function...
+  // Collect and validate all arguments as numerators
   const numerators = args.filter(numerator => {
     return Number.isInteger(numerator) && numerator > 0;
   });
 
-  // If there is no numerators to work with...
+  // If there is no numerators to work with return an empty array
   if (numerators.length === 0) {
-    // Return an empty array.
     return [];
   }
 
-  // Store the smallest numerator, this will become the greatest common denominator if needed.
+  // Find the greatest common denominator (smallest numerator)
+  // and the second great common denominator possible, respectively
   const denominators = [Math.min(...numerators)];
-  // Store half of the greatest common denominator, we can never return a
-  // value greater than half of the largest denominator.
   const median = denominators[0] / 2;
 
-  // If median denominator is less than 1 it means 1 is a numerator and we can return early.
+  // If median denominator is less than 1 it means 1 is a numerator and we can return early
   if (median < 1) {
     return [1];
   }
 
-  // Store the medium rounded up. We can use this to check against all
-  // numerators for common denominators.
-  let commonNumber = Math.ceil(median);
-  // Iterate against the common numbers.
-  while (commonNumber > 0) {
-    // If the current number is a denominator of the greatest common denominator...
-    if (denominators[0] % commonNumber === 0) {
-      // Store the common denominator for later.
-      denominators.push(commonNumber);
+  // Find all possible denominators against the second greatest common denominator
+  let possibleDenominator = Math.ceil(median);
+  while (possibleDenominator > 0) {
+    if (denominators[0] % possibleDenominator === 0) {
+      denominators.push(possibleDenominator);
     }
 
-    // Reduce the iteration against the numerators maximum value
-    commonNumber--;
+    possibleDenominator--;
   }
-
-  // Our while loop is optimized but reversed.
+  // Our while loop is optimized but reverses the numbers
+  // Optimiation Opportunity: Get rid of reverse
   denominators.reverse();
 
-  // If theres only one numerator then the denominators are "ipso facto" common and...
+  // Conlude we only have one numerator so return everything we found
   if (numerators.length === 1) {
-    // We can return first set of denominators we found.
     return [...denominators];
   }
 
+  // Conclude that we need to check against more than 1 numerator
   numerators
-    // Because we already did early checks on the first numerator,
-    // we can skip the first one to optimize on large data sets.
+    // We already iterated on the first numerator
     .splice(1, numerators.length - 1)
-    // For every other numerator...
+    // Iterate against the rest of numerators
     .map(numerator => {
-      // Store the length of common denominators we already found.
-      let denominator = denominators.length - 1;
-      // For every denominator...
-      while (denominator >= 0) {
-        // If the current denominator is a denominator of the current numerator...
-        if (numerator % denominators[denominator] !== 0) {
-          // We can splice the denominator in to position of our denominators.
-          denominators.splice(denominator, 1);
+      let possibleDenominator = denominators.length - 1;
+
+      while (possibleDenominator >= 0) {
+        // If the numerator can have a common denominator, store it
+        if (numerator % denominators[possibleDenominator] !== 0) {
+          denominators.splice(possibleDenominator, 1);
         }
 
-        // Reduce the iteration against the denominators length.
-        denominator--;
+        possibleDenominator--;
       }
     });
 
-  // Return all the collected denominators.
+  // Return all the collected denominators
   return denominators;
 };
 

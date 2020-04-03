@@ -34,19 +34,25 @@ npm run validate
 
 Run only unit tests
 
-```js
-npm run test // test all files once
-npm run test:watch // watch and test on source
+```
+// test all files once
+npm run test
+
+// test on source
+npm run test:source
+
+// watch and test on source
+npm run test:watch
 ```
 
 Run only benchmarks
 
-```node
+```
 npm run benchmark
 ```
 
 Build distribution package. Overwrites the current package export. *(This should be the fastest passing version)*
 
-```node
-npm run dist
+```
+npm run build:dist
 ```

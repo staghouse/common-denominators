@@ -10,24 +10,24 @@ const commonDenominators = (...args) => {
   if (median < 1) {
     return [ 1 ];
   }
-  let commonNumber = Math.ceil(median);
-  while (commonNumber > 0) {
-    if (denominators[0] % commonNumber === 0) {
-      denominators.push(commonNumber);
+  let possibleDenominator = Math.ceil(median);
+  while (possibleDenominator > 0) {
+    if (denominators[0] % possibleDenominator === 0) {
+      denominators.push(possibleDenominator);
     }
-    commonNumber--;
+    possibleDenominator--;
   }
   denominators.reverse();
   if (numerators.length === 1) {
     return [ ...denominators ];
   }
   numerators.splice(1, numerators.length - 1).map(numerator => {
-    let denominator = denominators.length - 1;
-    while (denominator >= 0) {
-      if (numerator % denominators[denominator] !== 0) {
-        denominators.splice(denominator, 1);
+    let possibleDenominator = denominators.length - 1;
+    while (possibleDenominator >= 0) {
+      if (numerator % denominators[possibleDenominator] !== 0) {
+        denominators.splice(possibleDenominator, 1);
       }
-      denominator--;
+      possibleDenominator--;
     }
   });
   return denominators;
