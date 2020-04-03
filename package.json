@@ -28,6 +28,7 @@
   "devDependencies": {
     "benchmark": "^2.1.4",
     "chalk": "^4.0.0",
+    "codecov": "^3.6.5",
     "husky": "^4.2.3",
     "jest": "^25.2.6",
     "uglify-es": "^3.3.9"
