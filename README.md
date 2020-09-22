@@ -28,13 +28,13 @@ commonDenominators(6, 12, 24, 30); // -> [1, 2, 3, 6]
 
 Minify, test and benchmark
 
-```
+```terminal
 npm run validate
 ```
 
 Run only unit tests
 
-```
+```terminal
 // test all files once
 npm run test
 
@@ -47,12 +47,12 @@ npm run test:watch
 
 Run only benchmarks
 
-```
+```terminal
 npm run benchmark
 ```
 
 Build distribution package. Overwrites the current package export. *(This should be the fastest passing version)*
 
-```
+```terminal
 npm run build:dist
 ```
